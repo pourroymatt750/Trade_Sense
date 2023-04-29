@@ -6,22 +6,23 @@ from prophet.plot import plot_plotly
 from plotly import graph_objects as go
 import csv
 
-stocks = []
+stock_tickers = []
+stock_names = dict()
 with open('sp-500.csv', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
+    for line in csv.reader(csv_file):
+        stock_tickers.append(line[0])
 
-    for line in csv_reader:
-        stocks.append(line[0])
+        stock_names[line[0]] = line[1]
+
 
 START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 st.title("Trader Sense")
+selected_stock = st.selectbox('Select a company', stock_tickers)
+st.subheader(stock_names[selected_stock])
 
-# stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
-selected_stock = st.selectbox('Select a company', stocks)
-
-n_years = st.slider('Years of prediction:', 1, 4)
+n_years = st.slider('Years of prediction:', 1, 3)
 period = n_years * 365
 
 
