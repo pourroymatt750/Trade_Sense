@@ -1,9 +1,14 @@
 AAPL,Apple
-GOOGL,Alphabet (Class A)
-GOOG,Alphabet (Class C)
+GOOG, Google
 AMZN,Amazon
 GS,Goldman Sachs
+BRK-A,Berkshire Hathaway
+AXP,American Express
 ADBE,Adobe
+SCHW,Charles Schwab Corporation
+CHTR,Charter Communications
+CVX,Chevron Corporation
+CMG,Chipotle Mexican Grill
 MMM,3M
 AOS,A. O. Smith
 ABT,Abbott Laboratories
@@ -28,12 +33,10 @@ ALLE,Allegion
 LNT,Alliant Energy
 ALL,Allstate Corp
 MO,Altria Group
-AMZN,Amazon
 AMCR,Amcor
 AEE,Ameren Corp
 AAL,American Airlines Group
 AEP,American Electric Power
-AXP,American Express
 AIG,American International Group
 AMT,American Tower
 AWK,American Water Works
@@ -65,7 +68,6 @@ BAC,Bank of America
 BBWI,Bath & Body Works Inc.
 BAX,Baxter International
 BDX,Becton Dickinson
-BRK.B,Berkshire Hathaway
 BBY,Best Buy
 BIO,Bio-Rad Laboratories
 TECH,Bio-Techne
@@ -103,10 +105,6 @@ CDAY,Ceridian
 CERN,Cerner
 CF,CF Industries
 CRL,Charles River Laboratories
-SCHW,Charles Schwab Corporation
-CHTR,Charter Communications
-CVX,Chevron Corporation
-CMG,Chipotle Mexican Grill
 CB,Chubb
 CHD,Church & Dwight
 CI,Cigna
