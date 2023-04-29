@@ -4,18 +4,21 @@ import yfinance as yf
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objects as go
-from polygon import RESTClient
+import csv
 
-client = RESTClient() # POLYGON_API_KEY is used
-client = RESTClient("api_key") # api_key is used
+stocks = []
+with open('sp-500.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
 
+    for line in csv_reader:
+        stocks.append(line[0])
 
 START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
-st.title('Trade Sense')
+st.title("Trader Sense")
 
-stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
+# stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
 selected_stock = st.selectbox('Select a company', stocks)
 
 n_years = st.slider('Years of prediction:', 1, 4)
@@ -49,7 +52,7 @@ plot_raw_data()
 
 # Forecasting
 df_train = data[['Date', 'Close']]
-df_train = df_train.rename(columns=({"Date":"ds", "Close":"y"}))
+df_train = df_train.rename(columns=({"Date": "ds", "Close": "y"}))
 
 m = Prophet()
 m.fit(df_train)
