@@ -9,7 +9,7 @@
 * Streamlit.io is used for front-end and deployment. 
 * Facebook's "Prophet" is the machine learing model used for the forecasts. 
 * Yahoo Finance's "yfinance" was used to gather the financial data. 
-* Plotly was used for some of the graphs and charts. 
+* Plotly was used for many graphs and charts. 
 * "News API" was used to gather revelent recent news headlines about the selected stock
 
 ### First, the user will select a company from a list of the Fortune 500. After the company is selected, the app will retrieve data about the past and current performance of the company as well as forecast the future trend and performance. Finally, it will search the internet for any major news headlines regarding the stock and will populate the articles if there are any. 
