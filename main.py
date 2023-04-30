@@ -7,7 +7,7 @@ from prophet.plot import plot_plotly
 from plotly import graph_objects as go
 import csv
 # Import News API
-from newsapi import NewsApiClient
+from newsapi.newsapi_client import NewsApiClient
 import os
 from dotenv import load_dotenv
 
