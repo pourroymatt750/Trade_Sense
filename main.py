@@ -6,8 +6,7 @@ from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objects as go
 import csv
-# Import News API
-# from newsapi import NewsApiClient
+from newsapi import NewsApiClient
 import os
 from dotenv import load_dotenv
 
@@ -21,7 +20,7 @@ integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJ
 # News API key
 load_dotenv()
 news_api_key = os.getenv('NEWS_API_KEY')
-# newsapi = NewsApiClient(news_api_key)
+newsapi = NewsApiClient(news_api_key)
 # Parse through CSV file to get ticker and company name
 stock_tickers = []
 stock_names = dict()
@@ -103,10 +102,10 @@ fig2 = m.plot_components(forecast)
 st.write(fig2)
 
 # /v2/top-headlines from News API
-# top_headlines = newsapi.get_top_headlines(q=stock_names[stock_selected],
-#                                           category='business',
-#                                           language='en',
-#                                           )
+top_headlines = newsapi.get_top_headlines(q=stock_names[stock_selected],
+                                          category='business',
+                                          language='en',
+                                          )
 
 
 # Boostrap card to hold the news stories
@@ -130,40 +129,40 @@ st.markdown("<h1 style='text-align: center; margin-top: 5%;'>Recent Headlines</h
 left = []
 mid = []
 right = []
-# with st.container():
-#     left_column, mid_column, right_column = st.columns(3)
-#     # Iterate through all news articles
-#     for headline in top_headlines['articles']:
-#         # Google News only reposts other news stories, so it ends up being duplicates
-#         if headline['source']['id'] != 'google-news' and headline['urlToImage'] is not None:
-#             if headline not in left and len(left) <= len(mid) and len(left) <= len(right):
-#                 with left_column:
-#                     st.markdown(news_story(
-#                         headline['url'],
-#                         headline['urlToImage'],
-#                         headline['source']['name'],
-#                         headline['title']
-#                     ), unsafe_allow_html=True)
-#                 left.append(headline)
-#             elif headline not in mid and len(mid) <= len(right) and len(mid) <= len(left):
-#                 with mid_column:
-#                     st.markdown(news_story(
-#                         headline['url'],
-#                         headline['urlToImage'],
-#                         headline['source']['name'],
-#                         headline['title']
-#                     ), unsafe_allow_html=True)
-#                 mid.append(headline)
-#             elif headline not in right and len(right) <= len(left) and len(right) <= len(mid):
-#                 with right_column:
-#                     st.markdown(news_story(
-#                         headline['url'],
-#                         headline['urlToImage'],
-#                         headline['source']['name'],
-#                         headline['title']
-#                     ), unsafe_allow_html=True)
-#                 right.append(headline)
-#
-#     if not top_headlines['articles']:
-#         st.markdown("<h3 style='text-align: center; margin-top: 5%;'>No headlines available</h3>",
-#                     unsafe_allow_html=True)
+with st.container():
+    left_column, mid_column, right_column = st.columns(3)
+    # Iterate through all news articles
+    for headline in top_headlines['articles']:
+        # Google News only reposts other news stories, so it ends up being duplicates
+        if headline['source']['id'] != 'google-news' and headline['urlToImage'] is not None:
+            if headline not in left and len(left) <= len(mid) and len(left) <= len(right):
+                with left_column:
+                    st.markdown(news_story(
+                        headline['url'],
+                        headline['urlToImage'],
+                        headline['source']['name'],
+                        headline['title']
+                    ), unsafe_allow_html=True)
+                left.append(headline)
+            elif headline not in mid and len(mid) <= len(right) and len(mid) <= len(left):
+                with mid_column:
+                    st.markdown(news_story(
+                        headline['url'],
+                        headline['urlToImage'],
+                        headline['source']['name'],
+                        headline['title']
+                    ), unsafe_allow_html=True)
+                mid.append(headline)
+            elif headline not in right and len(right) <= len(left) and len(right) <= len(mid):
+                with right_column:
+                    st.markdown(news_story(
+                        headline['url'],
+                        headline['urlToImage'],
+                        headline['source']['name'],
+                        headline['title']
+                    ), unsafe_allow_html=True)
+                right.append(headline)
+
+    if not top_headlines['articles']:
+        st.markdown("<h3 style='text-align: center; margin-top: 5%;'>No headlines available</h3>",
+                    unsafe_allow_html=True)
