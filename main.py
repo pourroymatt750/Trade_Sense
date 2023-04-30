@@ -11,7 +11,7 @@ import os
 from dotenv import load_dotenv
 
 # Config page
-st.set_page_config(page_title="Trader Sense", layout="wide")
+st.set_page_config(page_title="Trade Sense", layout="wide")
 # Bootstrap CSS
 st.markdown(f"""
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,7 +40,7 @@ TODAY_DATA = date.today().strftime("%Y-%m-%d")
 
 # Header
 with st.container():
-    st.markdown("<h1 style='text-align: center; margin-bottom: 5%; margin-top:-3%;'>Trader Sense</h1>",
+    st.markdown("<h1 style='text-align: center; margin-bottom: 5%; margin-top:-3%;'>Trade Sense</h1>",
                 unsafe_allow_html=True)
     left_column, right_column = st.columns(2)
     with left_column:
