@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import datetime
 from datetime import date
 import yfinance as yf
