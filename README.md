@@ -2,7 +2,7 @@
 
 #### Trade Sense is a stock forecasting app that uses machine learning to forecast the stock's future performance. 
 
-### View the Trade Sense app deployment [HERE](https://pourroymatt750-trade-sense-main-k2ai9j.streamlit.app/)
+#### [View the Trade Sense app deployment](https://pourroymatt750-trade-sense-main-k2ai9j.streamlit.app/)
 
 ### Technologies Used:
 * 100% of project is built in Python including user-interface. 
