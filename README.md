@@ -3,4 +3,9 @@
 
 
 
-## Trade Sense is a stock forecasting app that uses machine learning to forecast the stock's future performance. First, the user will select a company from a list of the Fortune 500. After the company is selected, the app will retrieve data about the past and current performance of the company as well as forecast the future trend and performance. Finally, it will search the internet for any major news headlines regarding the stock and will populate the articles if there are any. 
+## Trade Sense is a stock forecasting app that uses machine learning to forecast the stock's future performance. 
+
+### First, the user will select a company from a list of the Fortune 500. After the company is selected, the app will retrieve data about the past and current performance of the company as well as forecast the future trend and performance. Finally, it will search the internet for any major news headlines regarding the stock and will populate the articles if there are any. 
+
+
+
