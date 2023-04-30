@@ -1,6 +1,3 @@
-# Trade Sense
-
-
 ![Screenshot 2023-04-30 at 2 11 35 PM](https://user-images.githubusercontent.com/69867050/235369358-4f272d71-a3b4-4392-b4c4-72178ba84ed1.png)
 
 
