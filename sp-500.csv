@@ -1,6 +1,7 @@
 AAPL,Apple
 GOOG, Google
 AMZN,Amazon
+META, Meta
 GS,Goldman Sachs
 BRK-A,Berkshire Hathaway
 AXP,American Express
@@ -188,7 +189,6 @@ EXPD,Expeditors
 EXR,Extra Space Storage
 XOM,ExxonMobil
 FFIV,F5 Networks
-FB,Facebook
 FAST,Fastenal
 FRT,Federal Realty Investment Trust
 FDX,FedEx
