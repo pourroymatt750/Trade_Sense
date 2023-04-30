@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import datetime
 from datetime import date
 import yfinance as yf
@@ -36,8 +37,8 @@ d = datetime.timedelta(days=28)
 a = tod - d
 START_NEWS = a.date()
 # START is how far data goes back to
-START = "2015-01-01"
-TODAY = date.today().strftime("%Y-%m-%d")
+START_DATA = "2015-01-02"
+TODAY_DATA = date.today().strftime("%Y-%m-%d")
 
 # Header
 with st.container():
@@ -45,13 +46,13 @@ with st.container():
                 unsafe_allow_html=True)
     left_column, right_column = st.columns(2)
     with left_column:
-        selected_stock = st.selectbox('Select a company', stock_tickers)
-        st.subheader(stock_names[selected_stock])
+        stock_selected = st.selectbox('Select a company', stock_tickers)
+        st.subheader(stock_names[stock_selected])
     with right_column:
-        n_years = st.slider('Years of prediction: ', 1, 3)
-        period = n_years * 365
-        str_yrs = str(n_years)
-        if n_years == 1:
+        num_years = st.slider('Years of prediction: ', 1, 3)
+        period = num_years * 365
+        str_yrs = str(num_years)
+        if num_years == 1:
             st.subheader(str_yrs + " year")
         else:
             st.subheader(str_yrs + " years")
@@ -59,33 +60,29 @@ with st.container():
 
 @st.cache_data
 def load_data(ticker):
-    data = yf.download(ticker, START, TODAY)
-    data.reset_index(inplace=True)
-    return data
+    stock_data = yf.download(ticker, START_DATA, TODAY_DATA)
+    stock_data.reset_index(inplace=True)
+    return stock_data
 
 
 with st.container():
     left_column, right_column = st.columns(2)
     with left_column:
-        data_load_state = st.text("Loading data...")
-        data = load_data(selected_stock)
-        data_load_state.text("")
+        five_days_data = load_data(stock_selected)
 
-        st.subheader("Raw data")
-        st.write(data.tail())
+        st.subheader("Previous 5 days")
+        st.write(five_days_data.tail())
     with right_column:
         def plot_raw_data():
             fig = go.Figure()
-            fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name='stock_open'))
-            fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name='stock_close'))
-            fig.layout.update(title_text="Time Series Data", xaxis_rangeslider_visible=True)
+            fig.add_trace(go.Scatter(x=five_days_data['Date'], y=five_days_data['Open'], name='stock_open'))
+            fig.add_trace(go.Scatter(x=five_days_data['Date'], y=five_days_data['Close'], name='stock_close'))
+            fig.layout.update(title_text="Stock trend over time", xaxis_rangeslider_visible=True)
             st.plotly_chart(fig, use_container_width=True)
-
-
         plot_raw_data()
 
 # Forecasting
-df_train = data[['Date', 'Close']]
+df_train = five_days_data[['Date', 'Close']]
 df_train = df_train.rename(columns=({"Date": "ds", "Close": "y"}))
 
 m = Prophet()
@@ -93,19 +90,21 @@ m.fit(df_train)
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
-st.subheader('Forecast data')
+st.subheader('Forecast stock performance')
 st.write(forecast.tail())
 
-st.write('forecast data')
+st.markdown("<h2 style='margin-top: 5%;'>Forecast trend over time</h2>",
+            unsafe_allow_html=True)
+# st.subheader('Forecast trend over time')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1, use_container_width=True)
 
-st.write('forecast components')
+st.subheader('Forecast long-term, weekly, and yearly trend')
 fig2 = m.plot_components(forecast)
 st.write(fig2)
 
 # /v2/top-headlines from News API
-top_headlines = newsapi.get_top_headlines(q=stock_names[selected_stock],
+top_headlines = newsapi.get_top_headlines(q=stock_names[stock_selected],
                                           category='business',
                                           language='en',
                                           )
