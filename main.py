@@ -88,18 +88,19 @@ m.fit(df_train)
 future = m.make_future_dataframe(periods=period)
 forecast = m.predict(future)
 
-st.subheader('Forecast stock performance')
-st.write(forecast.tail())
+with st.container():
+    st.subheader('Forecast stock performance')
+    st.write(forecast.tail())
 
-st.markdown("<h2 style='margin-top: 5%;'>Forecast trend over time</h2>",
-            unsafe_allow_html=True)
-# st.subheader('Forecast trend over time')
-fig1 = plot_plotly(m, forecast)
-st.plotly_chart(fig1, use_container_width=True)
+    st.markdown("<h2 style='margin-top: 5%;'>Forecast trend over time</h2>",
+                unsafe_allow_html=True)
+    # st.subheader('Forecast trend over time')
+    fig1 = plot_plotly(m, forecast)
+    st.plotly_chart(fig1, use_container_width=True)
 
-st.subheader('Forecast long-term, weekly, and yearly trend')
-fig2 = m.plot_components(forecast)
-st.write(fig2)
+    st.subheader('Forecast long-term, weekly, and yearly trend')
+    fig2 = m.plot_components(forecast)
+    st.write(fig2)
 
 # /v2/top-headlines from News API
 top_headlines = newsapi.get_top_headlines(q=stock_names[stock_selected],
