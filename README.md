@@ -1,7 +1,7 @@
 ![Screenshot 2023-04-30 at 2 22 43 PM](https://user-images.githubusercontent.com/69867050/235369902-141d33c6-2fda-42a9-9f2c-915df0cda962.png)
 
 
-
+## View Deployment [HERE](https://pourroymatt750-trade-sense-main-k2ai9j.streamlit.app/)
 
 ### Trade Sense is a stock forecasting app that uses machine learning to forecast the stock's future performance. 
 
